@@ -47,8 +47,9 @@ public class Categorize {
             seedSet[i1] = rand.nextLong();
         }
         String fName = "testFile.ARFF";
-        int minAttributes = 3;
-        int maxAttributes = 3;
+        int minAttributes = 10;
+        int maxAttributes = 10
+               ;
         int[][][] attSets = getAttributeSets(minAttributes, maxAttributes);
         GenerateTestData2 tester = null;
         populateClassifierMap();
@@ -71,7 +72,7 @@ public class Categorize {
         tester.setNumDiscrete(1);
         tester.setNumReal(0);
         tester.setNumCategories(4);
-        tester.setNumDataPoints(500);
+        tester.setNumDataPoints(250);
         tester.numTestPoints = 1000;
         tester.generate();
         DataSource source = null;
@@ -115,14 +116,15 @@ public class Categorize {
 
         String tmpS = "";
         for (int i2 = 0; i2 < aSets.length; i2++) {
-            GenerateTestData2 tester = new GenerateTestData2(fName);
+            GenerateTestData3 tester = new GenerateTestData3(fName);
+            tester.setMinWeight(.0);
             tester.setDatasetName("test " + i1 + "-" + i2);
             tester.setNumAttributes(minAtts + i1);
             tester.setNumBinary(aSets[i2][0]);
             tester.setNumDiscrete(aSets[i2][1]);
             tester.setNumReal(aSets[i2][2]);
             tester.setNumCategories(4);
-            tester.setNumDataPoints(500);
+            tester.setNumDataPoints(1500);
             tester.numTestPoints = 1000;
             tester.generate();
             DataSource source = null;
